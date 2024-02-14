@@ -2,6 +2,8 @@ namespace MBSCore.LowWeightBehaviour
 {
     public interface IBehaviourTransition
     {
-        bool TryTransition(IBehaviourEntity entity, out IBehaviourState nextState);
+        void Enter();
+        bool TryTransition(out IBehaviourState nextState);
+        void Exit();
     }
 }

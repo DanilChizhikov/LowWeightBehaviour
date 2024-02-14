@@ -4,8 +4,8 @@ namespace MBSCore.LowWeightBehaviour
     {
         string Name { get; }
         
-        void Enter(IBehaviourEntity entity);
-        bool GetDecision(IBehaviourEntity entity);
-        void Exit(IBehaviourEntity entity);
+        void Enter();
+        bool GetDecision();
+        void Exit();
     }
 }
