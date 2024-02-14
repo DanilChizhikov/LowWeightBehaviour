@@ -1,0 +1,16 @@
+{
+    "name": "LowWeightBehaviour.Runtime.UnityEngine",
+    "rootNamespace": "MBSCore",
+    "references": [
+        "GUID:520a77200be7a49d0b871e44b4da0eec"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
