@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class RandomBehaviourTransition<TEntity> : BehaviourTransition<TEntity>
-        where TEntity : IBehaviourEntity
+    public sealed class RandomBehaviourTransition : IBehaviourTransition
     {
         private const int InvalidStateIndex = -1;
         
@@ -14,7 +13,7 @@ namespace MBSCore.LowWeightBehaviour
 
         private int _randomStateIndex;
         
-        public RandomBehaviourTransition(TEntity entity, IEnumerable<IBehaviourState> states) : base(entity)
+        public RandomBehaviourTransition(IEnumerable<IBehaviourState> states)
         {
             _states = new List<IBehaviourState>(states);
             _stateCount = _states.Count;
@@ -22,12 +21,12 @@ namespace MBSCore.LowWeightBehaviour
             _randomStateIndex = InvalidStateIndex;
         }
 
-        public override void Enter()
+        public void Enter()
         {
             _randomStateIndex = _stateRandom.Next(0, _stateCount);
         }
 
-        public override bool TryTransition(out IBehaviourState nextState)
+        public bool TryTransition(out IBehaviourState nextState)
         {
             if (_randomStateIndex <= InvalidStateIndex)
             {
@@ -38,7 +37,7 @@ namespace MBSCore.LowWeightBehaviour
             return true;
         }
 
-        public override void Exit()
+        public void Exit()
         {
             _randomStateIndex = InvalidStateIndex;
         }

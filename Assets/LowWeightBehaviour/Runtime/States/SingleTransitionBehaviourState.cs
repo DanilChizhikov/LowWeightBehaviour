@@ -1,7 +1,8 @@
 namespace MBSCore.LowWeightBehaviour
 {
     public abstract class SingleTransitionBehaviourState<TEntity, TTransition> : BehaviourState<TEntity>
-        where TEntity : IBehaviourEntity where TTransition : BehaviourTransition<TEntity>
+        where TEntity : IBehaviourEntity
+        where TTransition : IBehaviourTransition
     {
         private readonly TTransition _transition;
         

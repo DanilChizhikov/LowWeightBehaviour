@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class WeightBehaviourTransition<TEntity> : BehaviourTransition<TEntity>
-        where TEntity : IBehaviourEntity
+    public sealed class WeightBehaviourTransition : IBehaviourTransition
     {
         private const int InvalidWeightIndex = -1;
         
@@ -16,7 +15,7 @@ namespace MBSCore.LowWeightBehaviour
         private int _randomWeight;
         private int _weightIndex;
         
-        public WeightBehaviourTransition(TEntity entity, IEnumerable<RuntimeWeightInfo> weightInfos) : base(entity)
+        public WeightBehaviourTransition(IEnumerable<RuntimeWeightInfo> weightInfos)
         {
             _weightInfos = new List<RuntimeWeightInfo>(weightInfos);
             _weightInfoCount = _weightInfos.Count;
@@ -29,7 +28,7 @@ namespace MBSCore.LowWeightBehaviour
             _weightIndex = InvalidWeightIndex;
         }
 
-        public override void Enter()
+        public void Enter()
         {
             _randomWeight = _infoRandom.Next(1, _maxWeight);
             for (int i = 0; i < _weightInfoCount; i++)
@@ -44,7 +43,7 @@ namespace MBSCore.LowWeightBehaviour
             }
         }
 
-        public override bool TryTransition(out IBehaviourState nextState)
+        public bool TryTransition(out IBehaviourState nextState)
         {
             if (_weightIndex <= InvalidWeightIndex)
             {
@@ -55,7 +54,7 @@ namespace MBSCore.LowWeightBehaviour
             return !ReferenceEquals(nextState, null);
         }
 
-        public override void Exit()
+        public void Exit()
         {
             _randomWeight = int.MinValue;
             _weightIndex = InvalidWeightIndex;

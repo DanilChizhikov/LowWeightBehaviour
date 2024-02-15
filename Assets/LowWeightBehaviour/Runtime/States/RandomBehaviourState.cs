@@ -1,12 +1,10 @@
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class RandomBehaviourState<TEntity, TTransition> : SingleTransitionBehaviourState<TEntity, TTransition>
+    public abstract class RandomBehaviourState<TEntity> : SingleTransitionBehaviourState<TEntity, RandomBehaviourTransition>
         where TEntity : IBehaviourEntity
-        where TTransition : RandomBehaviourTransition<TEntity>
     {
         
-        public RandomBehaviourState(string name, TEntity entity, TTransition transition) : base(name, entity, transition)
-        {
-        }
+        public RandomBehaviourState(string name, TEntity entity, RandomBehaviourTransition transition) :
+            base(name, entity, transition) { }
     }
 }
