@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MBSCore.LowWeightBehaviour.UnityEngine
+namespace MBSCore.LowWeightBehaviour
 {
     public abstract class BehaviourStateConfig : ScriptableObject, IBehaviourStateConfig
     {

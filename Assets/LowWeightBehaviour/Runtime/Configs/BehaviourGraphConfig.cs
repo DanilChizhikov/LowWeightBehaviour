@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MBSCore.LowWeightBehaviour.UnityEngine
+namespace MBSCore.LowWeightBehaviour
 {
     [CreateAssetMenu(menuName = "MBSCore/LowWeightBehaviour/Graph Config", fileName = "New Graph Config")]
     public sealed class BehaviourGraphConfig : ScriptableObject, IBehaviourGraphConfig

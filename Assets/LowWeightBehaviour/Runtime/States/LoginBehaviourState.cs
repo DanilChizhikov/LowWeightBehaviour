@@ -2,21 +2,24 @@ using System.Collections.Generic;
 
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class LoginBehaviourState : BehaviourState
+    public abstract class LoginBehaviourState<TActionConfig, TEntity, TAction> : BehaviourState<TEntity>
+        where TEntity : IBehaviourEntity
+        where TActionConfig : BehaviourActionConfig
+        where TAction : BehaviourAction<TActionConfig, TEntity>
     {
-        private readonly List<IBehaviourAction> _actions;
+        private readonly List<TAction> _actions;
         private readonly int _actionCount;
-        private readonly List<IBehaviourTransition> _transitions;
+        private readonly List<LogicBehaviourTransition> _transitions;
         private readonly int _transitionCount;
 
         private bool _isEntered;
         
-        public LoginBehaviourState(string name, IEnumerable<IBehaviourAction> actions,
-            IEnumerable<IBehaviourTransition> transitions) : base(name)
+        public LoginBehaviourState(string name, TEntity entity, IEnumerable<TAction> actions,
+            IEnumerable<LogicBehaviourTransition> transitions) : base(name, entity)
         {
-            _actions = new List<IBehaviourAction>(actions);
+            _actions = new List<TAction>(actions);
             _actionCount = _actions.Count;
-            _transitions = new List<IBehaviourTransition>(transitions);
+            _transitions = new List<LogicBehaviourTransition>(transitions);
             _transitionCount = _transitions.Count;
             _isEntered = false;
         }
