@@ -2,10 +2,8 @@ using System.Collections.Generic;
 
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class LogicBehaviourTransition<TDecisionConfig, TEntity, TDecision> : BehaviourTransition<TEntity>
+    public abstract class LogicBehaviourTransition<TEntity> : BehaviourTransition<TEntity>
         where TEntity : IBehaviourEntity
-        where TDecisionConfig : BehaviourDecisionConfig
-        where TDecision : BehaviourDecision<TDecisionConfig, TEntity>
     {
         private readonly IBehaviourState _trueState;
         private readonly IBehaviourState _falseState;
@@ -13,7 +11,7 @@ namespace MBSCore.LowWeightBehaviour
         private readonly int _decisionCount;
 
         public LogicBehaviourTransition(TEntity entity, IBehaviourState trueState, IBehaviourState falseState,
-            IEnumerable<TDecision> decisions) : base(entity)
+            IEnumerable<IBehaviourDecision> decisions) : base(entity)
         {
             _trueState = trueState;
             _falseState = falseState;

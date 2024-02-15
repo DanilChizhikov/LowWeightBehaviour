@@ -18,13 +18,4 @@ namespace MBSCore.LowWeightBehaviour
         public abstract void Exit();
         public abstract bool TryGetNextState(out IBehaviourState nextState);
     }
-
-    public abstract class RandomBehaviourState<TEntity> : BehaviourState<TEntity> where TEntity : IBehaviourEntity
-    {
-        
-        
-        public RandomBehaviourState(string name, TEntity entity) : base(name, entity)
-        {
-        }
-    }
 }
