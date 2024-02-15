@@ -2,16 +2,15 @@ using System.Collections.Generic;
 
 namespace MBSCore.LowWeightBehaviour
 {
-    public abstract class LogicBehaviourTransition<TEntity> : BehaviourTransition<TEntity>
-        where TEntity : IBehaviourEntity
+    public sealed class LogicBehaviourTransition : IBehaviourTransition
     {
         private readonly IBehaviourState _trueState;
         private readonly IBehaviourState _falseState;
         private readonly List<IBehaviourDecision> _decisions;
         private readonly int _decisionCount;
 
-        public LogicBehaviourTransition(TEntity entity, IBehaviourState trueState, IBehaviourState falseState,
-            IEnumerable<IBehaviourDecision> decisions) : base(entity)
+        public LogicBehaviourTransition(IBehaviourState trueState, IBehaviourState falseState,
+            IEnumerable<IBehaviourDecision> decisions)
         {
             _trueState = trueState;
             _falseState = falseState;
@@ -19,7 +18,7 @@ namespace MBSCore.LowWeightBehaviour
             _decisionCount = _decisions.Count;
         }
 
-        public override void Enter()
+        public void Enter()
         {
             for (int i = 0; i < _decisionCount; i++)
             {
@@ -27,7 +26,7 @@ namespace MBSCore.LowWeightBehaviour
             }
         }
 
-        public override bool TryTransition(out IBehaviourState nextState)
+        public bool TryTransition(out IBehaviourState nextState)
         {
             nextState = null;
             bool result = true;
@@ -44,7 +43,7 @@ namespace MBSCore.LowWeightBehaviour
             return !ReferenceEquals(nextState, null);
         }
 
-        public override void Exit()
+        public void Exit()
         {
             for (int i = 0; i < _decisionCount; i++)
             {

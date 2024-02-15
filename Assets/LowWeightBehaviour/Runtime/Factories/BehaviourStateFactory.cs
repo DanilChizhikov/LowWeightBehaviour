@@ -9,6 +9,13 @@ namespace MBSCore.LowWeightBehaviour
     {
         public Type ServicedConfigType => typeof(TConfig);
         
+        protected IBehaviourStateFactoryService FactoryService { get; private set; }
+
+        public void InstallFactoryService(IBehaviourStateFactoryService value)
+        {
+            FactoryService = value;
+        }
+
         public IBehaviourState Create(IBehaviourStateConfig config, IBehaviourEntity entity)
         {
             if (config is not TConfig genericConfig)
