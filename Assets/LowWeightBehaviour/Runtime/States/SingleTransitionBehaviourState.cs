@@ -15,15 +15,17 @@ namespace MBSCore.LowWeightBehaviour
         {
             _transition.Enter();
         }
-
-        public override bool TryGetNextState(out IBehaviourState nextState)
-        {
-            return _transition.TryTransition(out nextState);
-        }
+        
+        public override void Processing() { }
         
         public override void Exit()
         {
             _transition.Exit();
+        }
+        
+        public override bool TryGetNextState(out IBehaviourState nextState)
+        {
+            return _transition.TryTransition(out nextState);
         }
     }
 }

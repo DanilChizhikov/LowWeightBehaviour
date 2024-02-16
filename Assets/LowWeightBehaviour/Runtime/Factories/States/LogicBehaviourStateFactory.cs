@@ -20,11 +20,12 @@ namespace MBSCore.LowWeightBehaviour
         {
             IBehaviourAction[] actions = GetActions(config.ActionConfigs, entity);
             LogicBehaviourTransition[] transitions = GetTransitions(config.TransitionConfigs, entity);
-            return Create(actions, transitions, entity);
+            return Create(config.Name, actions, transitions, entity);
         }
 
-        protected abstract TState Create(IBehaviourAction[] actions, LogicBehaviourTransition[] transitions,
+        protected abstract TState Create(string name, IBehaviourAction[] actions, LogicBehaviourTransition[] transitions,
             TEntity entity);
+        
         private IBehaviourAction[] GetActions(IReadOnlyList<IBehaviourActionConfig> configs, IBehaviourEntity entity)
         {
             int configsCount = configs.Count;
@@ -52,11 +53,6 @@ namespace MBSCore.LowWeightBehaviour
             }
 
             return transitions;
-        }
-
-        private IBehaviourState GetState(IBehaviourStateConfig config, IBehaviourEntity entity)
-        {
-            return !ReferenceEquals(config, null) ? FactoryService.Create(config, entity) : null;
         }
 
         private IBehaviourDecision[] GetDecisions(IReadOnlyList<IBehaviourDecisionConfig> configs,

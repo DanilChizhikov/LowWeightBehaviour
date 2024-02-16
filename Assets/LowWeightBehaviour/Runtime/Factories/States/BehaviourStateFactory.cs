@@ -30,6 +30,11 @@ namespace MBSCore.LowWeightBehaviour
 
             return Create(genericConfig, genericEntity);
         }
+        
+        protected IBehaviourState GetState(IBehaviourStateConfig config, IBehaviourEntity entity)
+        {
+            return !ReferenceEquals(config, null) ? FactoryService.Create(config, entity) : null;
+        }
 
         protected abstract TState Create(TConfig config, TEntity entity);
     }

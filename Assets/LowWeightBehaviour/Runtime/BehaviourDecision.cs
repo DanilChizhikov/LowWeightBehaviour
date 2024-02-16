@@ -16,7 +16,14 @@ namespace MBSCore.LowWeightBehaviour
         }
         
         public virtual void Enter() { }
-        public abstract bool GetDecision();
+
+        public bool GetDecision()
+        {
+            return Config.IsReverse ? !GetResult() : GetResult();
+        }
+        
         public virtual void Exit() { }
+        
+        protected abstract bool GetResult();
     }
 }
