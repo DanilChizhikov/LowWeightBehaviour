@@ -1,0 +1,22 @@
+{
+    "name": "com.danilchizhikov.lwb",
+    "displayName": "Low Weight Behaviour",
+    "version": "0.0.1",
+    "unity": "2022.3",
+    "dependencies": {},
+    "description": "Low Weight Behaviour for Unity.",
+    "keywords": [
+      "behaviour"
+    ],
+    "author": "MbsCore",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:DanilChizhikov/LowWeightBehaviour.git",
+        "directory": "com.danilchizhikov.lwb"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/@DanilChizhikov"
+    },
+    "license": "MIT"
+  }
+  
